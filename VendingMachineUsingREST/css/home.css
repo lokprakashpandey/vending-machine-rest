@@ -1,0 +1,6 @@
+.item {
+    font-weight: bold;
+    border: 2px solid black;
+    min-height: 160px;
+    margin-top: 50px;
+}
