@@ -33,14 +33,20 @@ function initialize() {
                 }
                 count++;
             });
-            $('#menuColumn').append(row);
+            $('#menuColumnDiv').append(row);
         },
         error: function() {
             alert('Error calling web service. Please try again later.');
         }
-    })
+    });
 
+    
 
+    
+    
+    
+    
+    
     // const totalMenuItems = 10;
     // var html='';
     // for(let i=0; i<totalMenuItems; i=i+3) {

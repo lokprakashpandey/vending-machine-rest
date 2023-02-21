@@ -4,3 +4,27 @@
     min-height: 160px;
     margin-top: 50px;
 }
+
+#moneyFormDiv {
+    font-weight: bold;
+    min-height: 160px;
+    margin-top: 50px;
+}
+
+#purchaseFormDiv, #changeFormDiv {
+    font-weight: bold;
+    min-height: 160px;
+    margin-top: 10px;
+}
+
+.btn {
+    border: 2px solid black;
+    min-width: 40%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#purchaseButton {
+    min-width: 100%;
+}
