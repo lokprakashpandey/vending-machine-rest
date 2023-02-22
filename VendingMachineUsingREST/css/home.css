@@ -5,6 +5,11 @@
     margin-top: 40px;
 }
 
+.item:hover {
+    background-color: grey;
+    color: white;
+}
+
 #formColumnDiv {
     font-weight: bold;
     margin-top: 30px;
@@ -23,6 +28,6 @@
     min-width: 100%;
 }
 
-input {
+input, textarea {
     text-align: center;
 }

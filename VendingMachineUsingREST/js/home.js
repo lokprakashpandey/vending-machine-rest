@@ -1,9 +1,10 @@
 $(document).ready(function () {
-    initialize();
+    loadMenu();
+    purchase();
 
 });
 
-function initialize() {
+function loadMenu() {
     $.ajax({
         type: 'GET',
         url: 'http://vending.us-east-1.elasticbeanstalk.com/items',
@@ -21,7 +22,7 @@ function initialize() {
                     row += '<div class="row">';
                 }
                 //add the menu item for display
-                row += '<div class="col-sm-3 offset-sm-1 item" id="' + id + '">';
+                row += '<div class="col-sm-3 offset-sm-1 item" id="'+id+'" onclick="selectItem('+id+','+count+')">';
                 row += '<div id="count' + id + '">' + count + '</div>';
                 row += '<div class="text-center" id="name' + id + '">' + name + '</div><br/>';
                 row += '<div class="text-center" id="price' + id + '">$' + price + '</div><br/>';
@@ -33,7 +34,7 @@ function initialize() {
                 }
                 count++;
             });
-            $('#menuColumnDiv').append(row);
+            $('#menuColumnDiv').html(row);
         },
         error: function () {
             alert('Error calling web service. Please try again later.');
@@ -59,4 +60,36 @@ function add(buttonDenomination) {
     }
     //display to 2-decimal digits
     $('#total').val(currentValue.toFixed(2));
+}
+
+function selectItem(id, count) {
+    $('#itemNumber').val(count);
+    $('#itemId').val(id);
+}
+
+function purchase() {
+    $('#purchaseButton').click(function (event) {
+        var amount = $('#total').val();
+        var id = $('#itemId').val();
+        $.ajax({
+            type: 'POST',
+            url: 'http://vending.us-east-1.elasticbeanstalk.com/money/'+amount+'/item/'+id,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            'dataType': 'json',
+            success: function(response) {
+                    $('#message').val('Thank You!!!');
+                    var quarters = response.quarters;
+                    var dimes = response.dimes;
+                    var nickels = response.nickels;
+                    var pennies = response.pennies;
+                    loadMenu();
+            },
+            error: function (errorResponse) {
+                $('#message').val(errorResponse.responseJSON.message);
+            }
+         })
+    });
 }
