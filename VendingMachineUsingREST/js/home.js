@@ -127,30 +127,3 @@ function changeReturn() {
     $('#itemId').val('');
     $('#change').val('');
 }
-
-    // var moneyToReturn = parseFloat($('#total').val());
-    // var quarterCount=0, dimeCount=0, nickelCount=0, pennyCount=0;
-    // while(moneyToReturn >= 0.25) {
-    //     quarterCount++;
-    //     moneyToReturn -= 0.25;
-    // }
-    // while(moneyToReturn >= 0.10) {
-    //     dimeCount++;
-    //     moneyToReturn -= 0.10;
-    // }
-    // while(moneyToReturn >= 0.05) {
-    //     nickelCount++;
-    //     moneyToReturn -= 0.05
-    // }
-    // while(moneyToReturn >= 0.01) {
-    //     pennyCount++;
-    //     moneyToReturn -= 0.01
-    // }
-
-    // var changeString = '';
-    // if(quarterCount > 0) changeString += quarterCount + ' Quarter ';
-    // if(dimeCount > 0) changeString += dimeCount + ' Dime ';
-    // if(nickelCount > 0) changeString += nickelCount + ' Nickel ';
-    // if(pennyCount > 0) changeString += pennyCount + ' Penny';
-    // $('#change').val(changeString);                
-    
