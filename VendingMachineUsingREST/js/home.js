@@ -1,7 +1,6 @@
 $(document).ready(function () {
     loadMenu();
     purchase();
-
 });
 
 function loadMenu() {
@@ -60,6 +59,7 @@ function add(buttonDenomination) {
     }
     //display to 2-decimal digits
     $('#total').val(currentValue.toFixed(2));
+
 }
 
 function selectItem(id, count) {
@@ -85,6 +85,17 @@ function purchase() {
                     var dimes = response.dimes;
                     var nickels = response.nickels;
                     var pennies = response.pennies;
+
+                    //Update leftover total after purchase
+                    var moneyToReturn = parseInt(quarters)*0.25 + parseInt(dimes)*0.10 + parseInt(nickels)*0.05 + parseInt(pennies)*0.01;
+                    $('#total').val(moneyToReturn.toFixed(2));
+                    
+                    var changeString = '';
+                    if(quarters > 0) changeString += quarters + ' Quarter ';
+                    if(dimes > 0) changeString += dimes + ' Dime ';
+                    if(nickels > 0) changeString += nickels + ' Nickel ';
+                    if(pennies > 0) changeString += pennies + ' Penny';
+                    $('#change').val(changeString);                
                     loadMenu();
             },
             error: function (errorResponse) {
@@ -93,3 +104,38 @@ function purchase() {
          })
     });
 }
+
+function changeReturn() {   
+    $('#total').val('0.00');
+    $('#message').val('');
+    $('#itemNumber').val('');
+    $('#itemId').val('');
+    $('#change').val('');
+}
+
+    // var moneyToReturn = parseFloat($('#total').val());
+    // var quarterCount=0, dimeCount=0, nickelCount=0, pennyCount=0;
+    // while(moneyToReturn >= 0.25) {
+    //     quarterCount++;
+    //     moneyToReturn -= 0.25;
+    // }
+    // while(moneyToReturn >= 0.10) {
+    //     dimeCount++;
+    //     moneyToReturn -= 0.10;
+    // }
+    // while(moneyToReturn >= 0.05) {
+    //     nickelCount++;
+    //     moneyToReturn -= 0.05
+    // }
+    // while(moneyToReturn >= 0.01) {
+    //     pennyCount++;
+    //     moneyToReturn -= 0.01
+    // }
+
+    // var changeString = '';
+    // if(quarterCount > 0) changeString += quarterCount + ' Quarter ';
+    // if(dimeCount > 0) changeString += dimeCount + ' Dime ';
+    // if(nickelCount > 0) changeString += nickelCount + ' Nickel ';
+    // if(pennyCount > 0) changeString += pennyCount + ' Penny';
+    // $('#change').val(changeString);                
+    
