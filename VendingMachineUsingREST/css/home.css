@@ -22,3 +22,7 @@
 #purchaseButton {
     min-width: 100%;
 }
+
+input {
+    text-align: center;
+}
