@@ -10,6 +10,11 @@
     color: white;
 }
 
+.blackandwhite{
+    background-color: black;
+    color: white;
+}
+
 #formColumnDiv {
     font-weight: bold;
     margin-top: 30px;

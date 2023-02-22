@@ -63,7 +63,17 @@ function add(buttonDenomination) {
 }
 
 function selectItem(id, count) {
+    // to display item number to user
     $('#itemNumber').val(count);
+
+    //to change css when clicked, we keep prevId so that it can be cleared when next item is selected
+    let prevId = $('#itemId').val(); // it is initially empty
+    if(prevId.length && prevId != id) {
+        $('#'+prevId).removeClass('blackandwhite'); //remove class of previous item selected
+    }
+    $('#'+id).addClass('blackandwhite'); // toggle class of new item selected
+
+    //assign actual id value of the item
     $('#itemId').val(id);
 }
 
