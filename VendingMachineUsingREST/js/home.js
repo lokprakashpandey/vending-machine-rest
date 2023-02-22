@@ -59,7 +59,9 @@ function add(buttonDenomination) {
     }
     //display to 2-decimal digits
     $('#total').val(currentValue.toFixed(2));
-
+    //When money is added, clear message and change if set
+    $('#message').val('');
+    $('#change').val('');
 }
 
 function selectItem(id, count) {
@@ -75,6 +77,10 @@ function selectItem(id, count) {
 
     //assign actual id value of the item
     $('#itemId').val(id);
+
+    //selecting an item clears value of change and message which is computed after purchase
+    $('#change').val('');
+    $('#message').val('');
 }
 
 function purchase() {
@@ -90,26 +96,25 @@ function purchase() {
             },
             'dataType': 'json',
             success: function(response) {
-                    $('#message').val('Thank You!!!');
                     var quarters = response.quarters;
                     var dimes = response.dimes;
                     var nickels = response.nickels;
                     var pennies = response.pennies;
-
                     //Update leftover total after purchase
                     var moneyToReturn = parseInt(quarters)*0.25 + parseInt(dimes)*0.10 + parseInt(nickels)*0.05 + parseInt(pennies)*0.01;
-                    $('#total').val(moneyToReturn.toFixed(2));
-                    
                     var changeString = '';
                     if(quarters > 0) changeString += quarters + ' Quarter ';
                     if(dimes > 0) changeString += dimes + ' Dime ';
                     if(nickels > 0) changeString += nickels + ' Nickel ';
                     if(pennies > 0) changeString += pennies + ' Penny';
+                    $('#total').val(moneyToReturn.toFixed(2));
+                    $('#message').val('Thank You!!!');
                     $('#change').val(changeString);                
                     loadMenu();
             },
             error: function (errorResponse) {
                 $('#message').val(errorResponse.responseJSON.message);
+                $('#change').val('');
             }
          })
     });
